@@ -2,8 +2,11 @@ package com.iud.dao;
 
 import com.iud.datos.Conexion;
 import com.iud.datos.OperacionesSql;
-import com.iud.modelo.Cliente;
-import java.sql.*;
+import com.iud.modelo.Ingreso;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -11,26 +14,25 @@ import javax.swing.JOptionPane;
  *
  * @author Berserk
  */
-public class ClienteDAO implements OperacionesSql {
-
+public class IngresoDao implements OperacionesSql{
     Conexion conexion = new Conexion();
-    Cliente clien = new Cliente();
+    Ingreso ingreso = new Ingreso();
 
     @Override
     public boolean insertar(Object obj) {
-        clien = (Cliente) obj;
+        ingreso = (Ingreso) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
-        String SQL = "INSERT INTO cliente VALUES(?,?,?,?,?)";
+        String SQL = "INSERT INTO ingreso_vehiculo VALUES(?,?,?,?)";
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
-            stmt.setInt(1, clien.getCedula());
-            stmt.setString(2, clien.getNombre());
-            stmt.setString(3, clien.getApellidos());            
-            stmt.setInt(4, clien.getCelular());
-            stmt.setString(5, clien.getDireccion());
+            stmt.setString(1, ingreso.getPlaca());            
+            stmt.setString(2, ingreso.getFechaIngreso());
+            stmt.setString(3, ingreso.getHoraIngreso());
+            stmt.setInt(4, ingreso.getCeldaId());
+            
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -45,19 +47,20 @@ public class ClienteDAO implements OperacionesSql {
             JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
             return false;
         }
+
     }
 
     @Override
     public boolean eliminar(Object obj) {
-        clien = (Cliente) obj;
+       ingreso = (Ingreso) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
-        String SQL = "DELETE FROM cliente WHERE cedula = ?";
+        String SQL = "DELETE FROM ingreso_vehiculo WHERE placa = ?";
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
-            stmt.setInt(1, clien.getCedula());
+            stmt.setString(1, ingreso.getPlaca());
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -76,20 +79,19 @@ public class ClienteDAO implements OperacionesSql {
 
     @Override
     public boolean modificar(Object obj) {
-        clien = (Cliente) obj;
+        ingreso = (Ingreso) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
-        String SQL = "UPDATE cliente set nombres=?, apellidos=?, celular=?, direccion=? WHERE cedula = ?";
+        String SQL = "UPDATE ingreso_vehiculo set fecha_ingreso=?, hora_ingreso=?, celda=? WHERE placa=?";
         ResultSet rs = null;
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL);
-            stmt.setString(1, clien.getNombre());
-            stmt.setString(2, clien.getApellidos());            
-            stmt.setInt(3, clien.getCelular());
-            stmt.setString(4, clien.getDireccion());
-            stmt.setInt(5, clien.getCedula());
+            stmt = conn.prepareStatement(SQL);                        
+            stmt.setString(1, ingreso.getFechaIngreso());
+            stmt.setString(2, ingreso.getHoraIngreso());
+            stmt.setInt(3, ingreso.getCeldaId());
+            stmt.setString(3, ingreso.getPlaca());
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -104,7 +106,6 @@ public class ClienteDAO implements OperacionesSql {
             JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
             return false;
         }
-
     }
 
     @Override
@@ -113,15 +114,15 @@ public class ClienteDAO implements OperacionesSql {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String SQL = "SELECT * FROM cliente";
+        String SQL = "SELECT * FROM ingreso_vehiculo";
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Object[] fila = new Object[5];
-                for (int i = 0; i <= 4; i++) {
+                Object[] fila = new Object[4];
+                for (int i = 0; i <= 3; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
                 data.add(fila);
@@ -138,4 +139,6 @@ public class ClienteDAO implements OperacionesSql {
             return data;
         }
     }
+  
+    
 }

@@ -24,17 +24,16 @@ public class VehiculoDao implements OperacionesSql{
         vehiculo = (Vehiculo) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
-        String SQL = "INSERT INTO vehiculo VALUES(?,?,?,?,?,?)";
+        String SQL = "INSERT INTO vehiculo VALUES(?,?,?,?,?)";
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
-            stmt.setString(1, vehiculo.getPlaca());
-            stmt.setString(2, vehiculo.getTipo());
-            stmt.setString(3, vehiculo.getMarca());
-            stmt.setString(4, vehiculo.getColor());
-            stmt.setString(5, vehiculo.getLinea());
-            stmt.setInt(6, vehiculo.getCedulaPropietario());
+            stmt.setString(1, vehiculo.getPlaca());            
+            stmt.setString(2, vehiculo.getMarca());
+            stmt.setString(3, vehiculo.getColor());
+            stmt.setInt(4, vehiculo.getCedula());
+            stmt.setString(5, vehiculo.getTipoVehiculo());
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -83,18 +82,17 @@ public class VehiculoDao implements OperacionesSql{
         vehiculo = (Vehiculo) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
-        String SQL = "UPDATE vehiculo set tipo=?, marca=?, color=?, linea=?, cedula_propietario=? WHERE placa=?";
+        String SQL = "UPDATE vehiculo set marca=?, color=?, cedula=?, tipo_vehiculo=? WHERE placa=?";
         ResultSet rs = null;
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
-            stmt.setString(1, vehiculo.getTipo());
-            stmt.setString(2, vehiculo.getMarca());
-            stmt.setString(3, vehiculo.getColor());
-            stmt.setString(4, vehiculo.getLinea());
-            stmt.setInt(5, vehiculo.getCedulaPropietario());
-            stmt.setString(6, vehiculo.getPlaca());
+            stmt.setString(1, vehiculo.getMarca());
+            stmt.setString(2, vehiculo.getColor());
+            stmt.setInt(3, vehiculo.getCedula());
+            stmt.setString(4, vehiculo.getTipoVehiculo());
+            stmt.setString(5, vehiculo.getPlaca());
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -125,8 +123,8 @@ public class VehiculoDao implements OperacionesSql{
             stmt = conn.prepareStatement(SQL);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Object[] fila = new Object[6];
-                for (int i = 0; i <= 5; i++) {
+                Object[] fila = new Object[5];
+                for (int i = 0; i <= 4; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
                 data.add(fila);

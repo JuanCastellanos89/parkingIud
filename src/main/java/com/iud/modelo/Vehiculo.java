@@ -5,35 +5,20 @@ package com.iud.modelo;
  * @author Berserk
  */
 public class Vehiculo {
-    private String placa, tipo, marca, color, linea;
-    private int cedulaPropietario;
+    private String placa, marca, color;
+    private int cedula;
+    private String tipoVehiculo;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String placa, String tipo, String marca, String color, String linea, int cedulaPropietario) {
+    public Vehiculo(String placa, String marca, String color, int cedula, String tipoVehiculo) {
         this.placa = placa;
-        this.tipo = tipo;
         this.marca = marca;
         this.color = color;
-        this.linea = linea;
-        this.cedulaPropietario = cedulaPropietario;
+        this.cedula = cedula;
+        this.tipoVehiculo = tipoVehiculo;
     }
-
-    public Vehiculo(int cedulaPropietario) {
-        this.cedulaPropietario = cedulaPropietario;
-    }
-
-    public Vehiculo(String tipo, String marca, String color, String linea, int cedulaPropietario) {
-        this.tipo = tipo;
-        this.marca = marca;
-        this.color = color;
-        this.linea = linea;
-        this.cedulaPropietario = cedulaPropietario;
-    }
-    
-    
-    
 
     public String getPlaca() {
         return placa;
@@ -41,14 +26,6 @@ public class Vehiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getMarca() {
@@ -67,27 +44,22 @@ public class Vehiculo {
         this.color = color;
     }
 
-    public String getLinea() {
-        return linea;
+    public int getCedula() {
+        return cedula;
     }
 
-    public void setLinea(String linea) {
-        this.linea = linea;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
-    public int getCedulaPropietario() {
-        return cedulaPropietario;
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
     }
 
-    public void setCedulaPropietario(int cedulaPropietario) {
-        this.cedulaPropietario = cedulaPropietario;
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
-    
 
-    @Override
-    public String toString() {
-        return "Vehiculo{" + "placa=" + placa + ", tipo=" + tipo + ", marca=" + marca + ", color=" + color + ", linea=" + linea + ", cedulaPropietario=" + cedulaPropietario + '}';
-    }
-    
+   
     
 }

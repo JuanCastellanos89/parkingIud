@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 
 public class Conexion {
-    private static final String JDBC_URL = "jdbc:sqlite:dbparqueadero.db";
+    private static final String JDBC_URL = "jdbc:sqlite:parqueadero.db";
     
     public static Connection getConnection() throws SQLException{
         return DriverManager.getConnection(JDBC_URL);

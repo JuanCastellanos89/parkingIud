@@ -1,9 +1,9 @@
 package com.iud.parqueadero;
 
 import com.iud.dao.ClienteDAO;
-import com.iud.vista.VistaCliente;
-import com.iud.vista.VistaRegistro;
-import com.iud.vista.VistaVehiculo;
+
+
+
 import java.sql.SQLException;
 
 /**
@@ -20,8 +20,7 @@ public class Mavenproject1 {
         //VistaVehiculo vVehiculo = new VistaVehiculo();
         //vVehiculo.setVisible(true);
         
-        VistaRegistro vRegistro = new VistaRegistro();
-        vRegistro.setVisible(true);
+
       
         
     }
