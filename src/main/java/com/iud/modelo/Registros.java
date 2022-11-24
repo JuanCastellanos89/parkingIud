@@ -4,14 +4,14 @@ package com.iud.modelo;
  *
  * @author Berserk
  */
-public class RegistroLog {
+public class Registros {
     private int idRegistro;
     private String fechaIngreso, horaIngreso, fechaSalida, horaSalida;
 
-    public RegistroLog() {
+    public Registros() {
     }
 
-    public RegistroLog(int idRegistro, String fechaIngreso, String horaIngreso, String fechaSalida, String horaSalida) {
+    public Registros(int idRegistro, String fechaIngreso, String horaIngreso, String fechaSalida, String horaSalida) {
         this.idRegistro = idRegistro;
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;

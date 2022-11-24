@@ -56,7 +56,6 @@ public class IngresoVista extends javax.swing.JFrame {
         SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         jSpinner1 = new javax.swing.JSpinner(sm);
         txtPlaca = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -78,11 +77,11 @@ public class IngresoVista extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 680, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 670, 240));
 
         jLabel1.setText("CELDA");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
-        jPanel1.add(txtCelda, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 30, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        jPanel1.add(txtCelda, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 30, -1));
 
         cbxCelda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCelda.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +89,7 @@ public class IngresoVista extends javax.swing.JFrame {
                 cbxCeldaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxCelda, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 200, -1));
+        jPanel1.add(cbxCelda, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 200, -1));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,10 +97,10 @@ public class IngresoVista extends javax.swing.JFrame {
                 btnLimpiarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, -1, -1));
 
         jLabel2.setText("PLACA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         cbxPlaca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxPlaca.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +108,7 @@ public class IngresoVista extends javax.swing.JFrame {
                 cbxPlacaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 180, -1));
+        jPanel1.add(cbxPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, -1));
 
         jLabel3.setText("FECHA DE INGRESO");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
@@ -118,56 +117,46 @@ public class IngresoVista extends javax.swing.JFrame {
         jPanel1.add(selFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 140, -1));
 
         jLabel4.setText("HORA DE INGRESO");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
 
         JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm");
         jSpinner1.setEditor(de);
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 70, -1));
-        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 60, -1));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 70, -1));
+        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 60, -1));
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGuardarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
-
-        btnAgregar.setText("Agregar");
+        btnAgregar.setText("AGREGAR");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
 
-        btnEditar.setText("Editar");
+        btnEditar.setText("EDITAR");
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, -1));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("ELIMINAR");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -200,17 +189,6 @@ public class IngresoVista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cbxPlacaActionPerformed
-
-    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        Celda celda = new Celda(Integer.parseInt(txtCelda.getText()),
-                                                               0);
-        if (celdaDao.modificar(celda)) {
-            JOptionPane.showMessageDialog(this, "Se a Modificado correcatamente!!!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al Modificar...");
-        }
-        cb.consultarCelda(cbxCelda);
-    }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -293,7 +271,6 @@ public class IngresoVista extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbxCelda;
     private javax.swing.JComboBox<String> cbxPlaca;
