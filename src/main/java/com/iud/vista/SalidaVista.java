@@ -1,20 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.iud.vista;
+
+import com.iud.dao.CeldaDao;
+import com.iud.dao.IngresoDao;
+import com.iud.dao.SalidaDao;
+import com.iud.datos.CbHelper;
+import com.iud.modelo.Salida;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 
 /**
  *
  * @author Berserk
  */
 public class SalidaVista extends javax.swing.JFrame {
-
-    /**
-     * Creates new form SalidaVista
-     */
+    
+    final String seleccione = "Seleccione una opcion";
+    CeldaDao celdaDao = new CeldaDao();
+    IngresoDao ingresoDao = new IngresoDao();
+    SalidaDao salidaDao = new SalidaDao();
+    
+    CbHelper cb = new CbHelper();
+    private ArrayList<Object[]> data;
+    
     public SalidaVista() {
         initComponents();
+        txtPlaca.setVisible(false);
+        cb.consultarPlacaIngreso(cbxPlacaIngreso);
     }
 
     /**
@@ -27,34 +43,30 @@ public class SalidaVista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        cbxPlacaIngreso = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        txtPlaca = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        selFecha = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        jSpinner1 = new javax.swing.JSpinner(sm);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 670, 230));
-
-        jButton1.setText("AGREGAR");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
+        });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
 
         jButton2.setText("EDITAR");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
@@ -65,6 +77,31 @@ public class SalidaVista extends javax.swing.JFrame {
         jButton4.setText("Limpiar");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, -1, -1));
 
+        cbxPlacaIngreso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxPlacaIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPlacaIngresoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbxPlacaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, -1));
+
+        jLabel1.setText("PLACA");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        jLabel3.setText("FECHA DE SALIDA");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        selFecha.setDateFormatString("yyyy-MM-dd");
+        jPanel1.add(selFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 140, -1));
+
+        jLabel4.setText("HORA DE SALIDA");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, "HH:mm");
+        jSpinner1.setEditor(de);
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 70, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,11 +110,50 @@ public class SalidaVista extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbxPlacaIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPlacaIngresoActionPerformed
+        String placaElegida;
+
+        if (cbxPlacaIngreso.getSelectedItem() != null) {
+            if (cbxPlacaIngreso.getSelectedItem() != seleccione) {
+                placaElegida = cbxPlacaIngreso.getSelectedItem().toString();
+                txtPlaca.setText(placaElegida);
+            }
+        }
+    }//GEN-LAST:event_cbxPlacaIngresoActionPerformed
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateFecha = sdf.format(selFecha.getDate());
+       
+        SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+        String time = sf.format(jSpinner1.getValue());
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        //LocalTime time = LocalTime.parse(jSpinner1.getValue().toString(),formatter);
+        System.out.println("***** "+ time);
+        //LocalTime horita = LocalTime.now();
+        
+        
+
+        Salida salida = new Salida(txtPlaca.getText(),
+                                                dateFecha, 
+                                                time                                     
+                                                );
+        if(salidaDao.insertar(salida)){
+            JOptionPane.showMessageDialog(this, "El vehiculo a salido y la celda ahora esta vacia");
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Error al agregar...");           
+        }
+        cb.consultarPlacaIngreso(cbxPlacaIngreso);
+    }//GEN-LAST:event_btnAgregarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -115,12 +191,18 @@ public class SalidaVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JComboBox<String> cbxPlacaIngreso;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JSpinner jSpinner1;
+    private Date date = new Date();
+    private com.toedter.calendar.JDateChooser selFecha;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

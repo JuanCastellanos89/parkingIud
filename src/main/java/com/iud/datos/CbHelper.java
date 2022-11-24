@@ -121,4 +121,30 @@ public class CbHelper {
         }
     }
     
+    public void consultarPlacaIngreso(JComboBox cmbPlaca) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String SQL = "SELECT placa FROM ingreso_vehiculo";
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+            cmbPlaca.removeAllItems();
+            cmbPlaca.addItem("Seleccione una opcion");
+            while (rs.next()) {
+                cmbPlaca.addItem(rs.getString("placa"));
+            }
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
+
+        }
+    }
+    
+    
 }

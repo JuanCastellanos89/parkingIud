@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,19 +19,35 @@ import javax.swing.SpinnerDateModel;
 public class IngresoVista extends javax.swing.JFrame {
 
     final String seleccione = "Seleccione una opcion";
+    String columnas[] = {"PLACA", "FECHA DE INGRESO", "HORA DE INGRESO", "# DE CELDA"};
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
     CeldaDao celdaDao = new CeldaDao();
     IngresoDao ingresoDao = new IngresoDao();
     CbHelper cb = new CbHelper();
+    private ArrayList<Object[]> data;
 
     public IngresoVista() {
         initComponents();
+        cargar();
         txtCelda.setVisible(false);
         txtPlaca.setVisible(false);
         cb.consultarCelda(cbxCelda);
         cb.consultarPlaca(cbxPlaca);
 
     }
+    
+    private void cargar() {
+        this.data = ingresoDao.consultar();
+
+        modelo.setNumRows(0);
+        for (Object[] dato : this.data) {
+            this.modelo.addRow(dato);
+        }
+        tblIngreso.setModel(modelo);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +60,7 @@ public class IngresoVista extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblIngreso = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtCelda = new javax.swing.JTextField();
         cbxCelda = new javax.swing.JComboBox<>();
@@ -64,7 +81,7 @@ public class IngresoVista extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblIngreso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +92,7 @@ public class IngresoVista extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblIngreso);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 670, 240));
 
@@ -216,12 +233,13 @@ public class IngresoVista extends javax.swing.JFrame {
         Celda celda = new Celda(Integer.parseInt(txtCelda.getText()),
                                                                0);
         if (celdaDao.modificar(celda)) {
-            JOptionPane.showMessageDialog(this, "Se a utilizado la celda correcatamente!!!");
+            //JOptionPane.showMessageDialog(this, "Se a utilizado la celda correcatamente!!!");
         } else {
             JOptionPane.showMessageDialog(this, "Error al Modificar...");
         }
         cb.consultarCelda(cbxCelda);
         cb.consultarPlaca(cbxPlaca);
+        cargar();
     }//GEN-LAST:event_btnAgregarMouseClicked
 
     private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
@@ -282,8 +300,8 @@ public class IngresoVista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private Date date = new Date();
-    private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser selFecha;
+    private javax.swing.JTable tblIngreso;
     private javax.swing.JTextField txtCelda;
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables

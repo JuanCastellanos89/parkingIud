@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
  *
  * @author Berserk
  */
-public class IngresoDao implements OperacionesSql{
+public class IngresoDao implements OperacionesSql {
+
     Conexion conexion = new Conexion();
     Ingreso ingreso = new Ingreso();
 
@@ -28,11 +29,11 @@ public class IngresoDao implements OperacionesSql{
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL);
-            stmt.setString(1, ingreso.getPlaca());            
+            stmt.setString(1, ingreso.getPlaca());
             stmt.setString(2, ingreso.getFechaIngreso());
             stmt.setString(3, ingreso.getHoraIngreso());
             stmt.setInt(4, ingreso.getCeldaId());
-            
+
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 Conexion.close(stmt);
@@ -52,7 +53,7 @@ public class IngresoDao implements OperacionesSql{
 
     @Override
     public boolean eliminar(Object obj) {
-       ingreso = (Ingreso) obj;
+        ingreso = (Ingreso) obj;
         Connection conn = null;
         PreparedStatement stmt = null;
         String SQL = "DELETE FROM ingreso_vehiculo WHERE placa = ?";
@@ -87,7 +88,7 @@ public class IngresoDao implements OperacionesSql{
 
         try {
             conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL);                        
+            stmt = conn.prepareStatement(SQL);
             stmt.setString(1, ingreso.getFechaIngreso());
             stmt.setString(2, ingreso.getHoraIngreso());
             stmt.setInt(3, ingreso.getCeldaId());
@@ -134,11 +135,46 @@ public class IngresoDao implements OperacionesSql{
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
-            
-        }finally{
+
+        } finally {
             return data;
         }
     }
-  
-    
+
+    public Ingreso obtenerPorCedula(int cedula) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Ingreso ingreso = null;
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM ingreso_vehiculo WHERE placa =?");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ingreso = new Ingreso();                
+                ingreso.setPlaca(rs.getString("placa"));
+                ingreso.setFechaIngreso(rs.getString("fecha_ingreso"));
+                ingreso.setHoraIngreso(rs.getString("hora_ingreso"));                
+                ingreso.setCeldaId(rs.getInt("celda"));
+
+            }
+            return ingreso;
+
+        } finally {
+            if (conn != null) {
+                Conexion.close(conn);
+            }
+
+            if (stmt != null) {
+                Conexion.close(stmt);
+            }
+            if (rs != null) {
+                Conexion.close(rs);
+            }
+        }
+    }
+
 }
