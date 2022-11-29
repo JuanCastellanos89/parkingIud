@@ -211,7 +211,7 @@ public class IngresoVista extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateFecha = sdf.format(selFecha.getDate());
        
-        SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sf = new SimpleDateFormat("HH:mm:ss");
         String time = sf.format(jSpinner1.getValue());
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         //LocalTime time = LocalTime.parse(jSpinner1.getValue().toString(),formatter);

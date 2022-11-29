@@ -55,6 +55,8 @@ public class SalidaVista extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         jSpinner1 = new javax.swing.JSpinner(sm);
+        txtCeldaAux = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +104,12 @@ public class SalidaVista extends javax.swing.JFrame {
         jSpinner1.setEditor(de);
         jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 70, -1));
 
+        txtCeldaAux.setEditable(false);
+        jPanel1.add(txtCeldaAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 70, -1));
+
+        jLabel2.setText("CELDA OCUPADA #");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,9 +118,7 @@ public class SalidaVista extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
         );
 
         pack();
@@ -125,6 +131,7 @@ public class SalidaVista extends javax.swing.JFrame {
             if (cbxPlacaIngreso.getSelectedItem() != seleccione) {
                 placaElegida = cbxPlacaIngreso.getSelectedItem().toString();
                 txtPlaca.setText(placaElegida);
+                cb.consultarCeldaSalir(txtCeldaAux, placaElegida);
             }
         }
     }//GEN-LAST:event_cbxPlacaIngresoActionPerformed
@@ -133,7 +140,7 @@ public class SalidaVista extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateFecha = sdf.format(selFecha.getDate());
        
-        SimpleDateFormat sf = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sf = new SimpleDateFormat("HH:mm:ss");
         String time = sf.format(jSpinner1.getValue());
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         //LocalTime time = LocalTime.parse(jSpinner1.getValue().toString(),formatter);
@@ -197,12 +204,14 @@ public class SalidaVista extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jSpinner1;
     private Date date = new Date();
     private com.toedter.calendar.JDateChooser selFecha;
+    private javax.swing.JTextField txtCeldaAux;
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

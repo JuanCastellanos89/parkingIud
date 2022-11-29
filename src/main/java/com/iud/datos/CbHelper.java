@@ -71,31 +71,6 @@ public class CbHelper {
         }
     }
 
-    public void consultarNombre(JComboBox cmbNombre) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        String SQL = "SELECT nombres FROM cliente WHERE cedula=?";
-
-        try {
-            conn = Conexion.getConnection();
-            stmt = conn.prepareStatement(SQL);
-            rs = stmt.executeQuery();
-            cmbNombre.removeAllItems();
-            cmbNombre.addItem("Seleccione una opcion");
-            while (rs.next()) {
-                cmbNombre.addItem(rs.getString("nombres"));
-            }
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
-
-        }
-    }
-
     public void consultarCelda(JComboBox cmbCelda) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -135,6 +110,55 @@ public class CbHelper {
             cmbPlaca.addItem("Seleccione una opcion");
             while (rs.next()) {
                 cmbPlaca.addItem(rs.getString("placa"));
+            }
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
+
+        }
+    }
+    
+    public void consultarCeldaSalir(JTextField jtf, String placaAux) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String SQL = "SELECT celda FROM ingreso_vehiculo WHERE placa ='"+placaAux+"'";
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+            jtf.setText("");
+            while (rs.next()) {
+                jtf.setText(rs.getString("celda"));
+            }
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
+
+        }
+    }
+    
+    public void consultarNombre(JTextField jtf, JTextField jtf1, int cedulaAux) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String SQL = "SELECT nombres,apellidos apellidos FROM cliente WHERE cedula ='"+cedulaAux+"'";
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+            jtf.setText("");
+            while (rs.next()) {
+                jtf.setText(rs.getString("nombres"));
+                jtf1.setText(rs.getString("Apellidos"));
             }
             Conexion.close(rs);
             Conexion.close(stmt);

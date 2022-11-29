@@ -12,7 +12,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Berserk
  */
 public class VehiculoVista extends javax.swing.JFrame {
-
+    
+    final String seleccione = "Seleccione una opcion";
     String columnas[] = {"PLACA", "MARCA", "COLOR", "CEDULA PROPIETARIO", "TIPO DE VEHICULO"};
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
     VehiculoDao vehiculoDao = new VehiculoDao();
@@ -63,6 +64,9 @@ public class VehiculoVista extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         cbxCedula = new javax.swing.JComboBox<>();
+        txtNombreAux = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtApellidoAux = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +90,7 @@ public class VehiculoVista extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblVehiculo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 840, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 297, 840, 390));
         jPanel1.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 190, -1));
 
         jLabel2.setText("CEDULA PROPIETARIO");
@@ -147,7 +151,26 @@ public class VehiculoVista extends javax.swing.JFrame {
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, -1, -1));
 
         cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCedulaActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 190, -1));
+
+        txtNombreAux.setEditable(false);
+        jPanel1.add(txtNombreAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 190, -1));
+
+        jLabel1.setText("NOMBRE PROPIETARIO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
+
+        txtApellidoAux.setEditable(false);
+        txtApellidoAux.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoAuxActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtApellidoAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 190, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,6 +257,20 @@ public class VehiculoVista extends javax.swing.JFrame {
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarMouseClicked
 
+    private void cbxCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCedulaActionPerformed
+        int cedulaElegida;
+        if (cbxCedula.getSelectedItem() != null) {
+            if (cbxCedula.getSelectedItem() != seleccione) {
+                cedulaElegida = Integer.parseInt(cbxCedula.getSelectedItem().toString());
+                cb.consultarNombre(txtNombreAux, txtApellidoAux, cedulaElegida);
+            }
+        }
+    }//GEN-LAST:event_cbxCedulaActionPerformed
+
+    private void txtApellidoAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoAuxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoAuxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +313,7 @@ public class VehiculoVista extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbxCedula;
     private javax.swing.JComboBox<String> cbxTipo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -284,8 +322,10 @@ public class VehiculoVista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblVehiculo;
+    private javax.swing.JTextField txtApellidoAux;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtNombreAux;
     private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

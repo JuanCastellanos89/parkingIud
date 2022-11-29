@@ -1,17 +1,23 @@
 package com.iud.modelo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  *
  * @author Berserk
  */
 public class Registros {
     private int idRegistro;
-    private String fechaIngreso, horaIngreso, fechaSalida, horaSalida;
+    private LocalDate fechaIngreso;
+    private LocalTime horaIngreso;
+    private LocalDate fechaSalida;
+    private LocalTime horaSalida;
 
     public Registros() {
     }
 
-    public Registros(int idRegistro, String fechaIngreso, String horaIngreso, String fechaSalida, String horaSalida) {
+    public Registros(int idRegistro, LocalDate fechaIngreso, LocalTime horaIngreso, LocalDate fechaSalida, LocalTime horaSalida) {
         this.idRegistro = idRegistro;
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;
@@ -19,41 +25,47 @@ public class Registros {
         this.horaSalida = horaSalida;
     }
 
-    public int getIdRegistro() {
-        return idRegistro;
+    public Registros(LocalDate fechaIngreso, LocalTime horaIngreso, LocalDate fechaSalida, LocalTime horaSalida) {
+        this.fechaIngreso = fechaIngreso;
+        this.horaIngreso = horaIngreso;
+        this.fechaSalida = fechaSalida;
+        this.horaSalida = horaSalida;
     }
 
-    public String getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getHoraIngreso() {
+    public LocalTime getHoraIngreso() {
         return horaIngreso;
     }
 
-    public void setHoraIngreso(String horaIngreso) {
+    public void setHoraIngreso(LocalTime horaIngreso) {
         this.horaIngreso = horaIngreso;
     }
 
-    public String getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public String getHoraSalida() {
+    public LocalTime getHoraSalida() {
         return horaSalida;
     }
 
-    public void setHoraSalida(String horaSalida) {
+    public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
     }
-    
+
+    public int getIdRegistro() {
+        return idRegistro;
+    }
     
 }

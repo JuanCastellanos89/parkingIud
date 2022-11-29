@@ -45,7 +45,7 @@ public class CeldaDao {
 
     }
     
-    public void actulizar(int id, Celda celda) throws SQLException{
+    public void actualizar(int id, Celda celda) throws SQLException{
         Connection conn = null;
         PreparedStatement stmt = null;
 
