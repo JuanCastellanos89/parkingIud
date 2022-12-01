@@ -169,6 +169,56 @@ public class CbHelper {
             JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
 
         }
-    } 
+    }
+    
+    public void consultarPlacaSalida(JComboBox cmbPlaca) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String SQL = "SELECT placa FROM salida_vehiculo";
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+            cmbPlaca.removeAllItems();
+            cmbPlaca.addItem("Seleccione una opcion");
+            while (rs.next()) {
+                cmbPlaca.addItem(rs.getString("placa"));
+            }
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
+
+        }
+    }
+    
+    public void consultarRegistrosPago(JTextField jtf,JTextField jtf2, String placaAux) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String SQL = "SELECT * FROM registros WHERE placa ='"+placaAux+"'";
+
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL);
+            rs = stmt.executeQuery();
+            jtf.setText("");
+            while (rs.next()) {
+                jtf.setText(rs.getString("hora_ingreso"));
+                jtf2.setText(rs.getString("hora_salida"));
+            }
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrion un error: " + e.getMessage());
+
+        }
+    }
     
 }
