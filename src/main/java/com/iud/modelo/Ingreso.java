@@ -20,6 +20,12 @@ public class Ingreso {
         this.celdaId = celdaId;
     }
 
+    public Ingreso(String placa) {
+        this.placa = placa;
+    }
+    
+    
+
     public String getPlaca() {
         return placa;
     }

@@ -20,6 +20,12 @@ public class Salida {
         return placa;
     }
 
+    public Salida(String placa) {
+        this.placa = placa;
+    }
+    
+    
+
     public void setPlaca(String placa) {
         this.placa = placa;
     }

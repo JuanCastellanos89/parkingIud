@@ -157,11 +157,11 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(sm)"/>
             <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);"/>
             <AuxValue name="JavaCodeGenerator_DeclarationPost" type="java.lang.String" value="private Date date = new Date();"/>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, &quot;HH:mm&quot;);&#xa;jSpinner1.setEditor(de);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JSpinner.DateEditor de = new JSpinner.DateEditor(jSpinner1, &quot;HH:mm:ss&quot;);&#xa;jSpinner1.setEditor(de);"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="270" y="130" width="70" height="-1"/>
+              <AbsoluteConstraints x="270" y="130" width="90" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

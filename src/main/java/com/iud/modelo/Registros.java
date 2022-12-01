@@ -9,63 +9,83 @@ import java.time.LocalTime;
  */
 public class Registros {
     private int idRegistro;
-    private LocalDate fechaIngreso;
-    private LocalTime horaIngreso;
-    private LocalDate fechaSalida;
-    private LocalTime horaSalida;
-
+    private String placa, fechaIngreso, horaIngreso, fechaSalida, horaSalida;
+  
     public Registros() {
     }
 
-    public Registros(int idRegistro, LocalDate fechaIngreso, LocalTime horaIngreso, LocalDate fechaSalida, LocalTime horaSalida) {
+    public Registros(int idRegistro, String placa, String fechaIngreso, String horaIngreso, String fechaSalida, String horaSalida) {
         this.idRegistro = idRegistro;
+        this.placa = placa;
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;
         this.fechaSalida = fechaSalida;
         this.horaSalida = horaSalida;
     }
 
-    public Registros(LocalDate fechaIngreso, LocalTime horaIngreso, LocalDate fechaSalida, LocalTime horaSalida) {
+    public Registros(int idRegistro) {
+        this.idRegistro = idRegistro;
+    }
+
+    public Registros(String placa, String fechaIngreso, String horaIngreso, String fechaSalida, String horaSalida) {
+        this.placa = placa;
         this.fechaIngreso = fechaIngreso;
         this.horaIngreso = horaIngreso;
         this.fechaSalida = fechaSalida;
         this.horaSalida = horaSalida;
     }
 
-    public LocalDate getFechaIngreso() {
+    public Registros(String placa, String fechaSalida, String horaSalida) {
+        this.placa = placa;
+        this.fechaSalida = fechaSalida;
+        this.horaSalida = horaSalida;
+    }
+    
+    
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(LocalDate fechaIngreso) {
+    public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public LocalTime getHoraIngreso() {
+    public String getHoraIngreso() {
         return horaIngreso;
     }
 
-    public void setHoraIngreso(LocalTime horaIngreso) {
+    public void setHoraIngreso(String horaIngreso) {
         this.horaIngreso = horaIngreso;
     }
 
-    public LocalDate getFechaSalida() {
+    public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
-    public LocalTime getHoraSalida() {
+    public String getHoraSalida() {
         return horaSalida;
     }
 
-    public void setHoraSalida(LocalTime horaSalida) {
+    public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
     }
 
     public int getIdRegistro() {
         return idRegistro;
     }
+
     
 }
