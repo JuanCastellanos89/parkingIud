@@ -67,9 +67,12 @@ public class VehiculoVista extends javax.swing.JFrame {
         txtNombreAux = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtApellidoAux = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblVehiculo.setModel(new javax.swing.table.DefaultTableModel(
@@ -93,19 +96,29 @@ public class VehiculoVista extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 297, 840, 390));
         jPanel1.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 190, -1));
 
+        jLabel2.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CEDULA PROPIETARIO");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("PLACA");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("MARCA");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("COLOR");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, -1));
         jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 190, -1));
 
+        jLabel6.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("TIPO DE VEHICULO");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
@@ -124,7 +137,7 @@ public class VehiculoVista extends javax.swing.JFrame {
                 btnAgregarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, -1, -1));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, -1, -1));
 
         btnEditar.setText("EDITAR");
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,7 +145,7 @@ public class VehiculoVista extends javax.swing.JFrame {
                 btnEditarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, -1, -1));
 
         btnEliminar.setText("ELIMINAR");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,7 +153,7 @@ public class VehiculoVista extends javax.swing.JFrame {
                 btnEliminarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 140, -1, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, -1, -1));
 
         btnLimpiar.setText("LIMPIAR");
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,7 +161,7 @@ public class VehiculoVista extends javax.swing.JFrame {
                 btnLimpiarMouseClicked(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, -1, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 200, -1, -1));
 
         cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxCedula.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +174,8 @@ public class VehiculoVista extends javax.swing.JFrame {
         txtNombreAux.setEditable(false);
         jPanel1.add(txtNombreAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 190, -1));
 
+        jLabel1.setFont(new java.awt.Font("Roboto Black", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NOMBRE PROPIETARIO");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, -1, -1));
 
@@ -171,6 +186,31 @@ public class VehiculoVista extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtApellidoAux, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 190, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+
+        jLabel7.setFont(new java.awt.Font("Roboto Black", 3, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("REGISTRO DE VEHICULO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel7)
+                .addContainerGap(548, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel7)
+                .addContainerGap(226, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,7 +359,9 @@ public class VehiculoVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblVehiculo;
     private javax.swing.JTextField txtApellidoAux;
